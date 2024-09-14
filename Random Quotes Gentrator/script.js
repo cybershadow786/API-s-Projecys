@@ -1,29 +1,43 @@
-// const quoteUrl = 'https://zenquotes.io/api/random'; // Use /random for a random quote
-// let quoteBox = document.querySelector(".quote");
-async function getQuotes() {
+const url = 'https://quotesondesign.com/wp-json/wp/v2/posts/';
+let previousIndices = [];
+
+let getQuote = async () => {
   try {
-    const url = 'https://andruxnet-random-famous-quotes.p.rapidapi.com/?count=10&cat=movies';
-    const options = {
-      method: 'GET', // Change to GET
-      headers: {
-        'x-rapidapi-key': 'd491171087msh06458daf2c3c081p14b829jsna065beec8c96', // Replace with your actual API key
-        'x-rapidapi-host': 'andruxnet-random-famous-quotes.p.rapidapi.com',
-        		'Content-Type': 'application/json'
-      },
-    };
-
-    const response = await fetch(url, options);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    let response = await fetch(url);
+    let data = await response.json();
+    
+    let indexOfApi;
+    if (previousIndices.length === 10) {
+      previousIndices = [];
     }
 
-    const data = await response.json();
-    console.log(data); // The response is likely JSON data
+    do {
+      indexOfApi = Math.floor(Math.random() * 10);
+    } while (previousIndices.includes(indexOfApi) && previousIndices.length < 10);
 
+    previousIndices.push(indexOfApi);
+
+    let quote = data[indexOfApi].content.rendered;
+    document.querySelector('.quote').innerHTML = quote;
   } catch (error) {
-    console.error("Error fetching quotes:", error);
+    console.error('Error fetching quote:', error);
+    document.querySelector('.quote').innerHTML = 'Failed to fetch quote.';
   }
 }
 
-getQuotes(); // Call the function to fetch quotes
+document.querySelector(".generator").addEventListener('click', getQuote);
+
+const themeToggleBtn = document.querySelector('.theme-toggle');
+const body = document.body;
+
+themeToggleBtn.addEventListener('click', () => {
+    if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+        themeToggleBtn.textContent = 'Switch to Light Theme';
+    } else {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+        themeToggleBtn.textContent = 'Switch to Dark Theme';
+    }
+});

@@ -1,21 +1,125 @@
-body{
+/* Base Styles */
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
     flex-direction: column;
-}
-.headding{
-    font-size: 3rem;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for theme change */
 }
-.genrator{
+
+/* Light Theme Styles */
+.light-theme {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.light-theme .heading {
+    color: #333;
+}
+
+.light-theme .quote {
+    color: #555;
+}
+
+.light-theme .generator {
+    border-color: #333;
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.light-theme .generator:hover {
+    background-color: #d0d0d0;
+}
+
+.light-theme .theme-toggle {
+    border-color: #333;
+    background-color: #ddd;
+    color: #333;
+}
+
+.light-theme .theme-toggle:hover {
+    background-color: #bbb;
+}
+
+/* Dark Theme Styles */
+.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-theme .heading {
+    color: #03dac5;
+}
+
+.dark-theme .quote {
+    color: #bb86fc;
+}
+
+.dark-theme .generator {
+    border-color: #03dac5;
+    background-color: #2e2e2e;
+    color: #e0e0e0;
+    box-shadow: 0 0 10px #03dac5; /* Neon glow effect */
+}
+
+.dark-theme .generator:hover {
+    background-color: #03dac5;
+    color: #121212;
+    transform: scale(1.05);
+}
+
+.dark-theme .theme-toggle {
+    border-color: #03dac5;
+    background-color: #121212;
+    color: #03dac5;
+}
+
+.dark-theme .theme-toggle:hover {
+    background-color: #03dac5;
+    color: #121212;
+}
+
+/* Button and Heading Styles */
+.heading {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.quote {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    transition: color 0.3s;
+}
+
+.generator,
+.theme-toggle {
     border: 3px solid rgb(0, 0, 0);
     border-radius: .5rem;
     outline: none;
     cursor: pointer;
-    padding: .5rem;
+    padding: .5rem 1rem;
     font-weight: bold;
     font-size: larger;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    margin: 0.5rem;
+}
+
+.generator:hover {
+    transform: scale(1.05);
+}
+
+/* Smooth animations */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.quote {
+    animation: fade-in 0.5s ease-out;
 }
