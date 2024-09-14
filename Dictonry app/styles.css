@@ -1,0 +1,173 @@
+/* Default body styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease;
+}
+
+.dark-theme {
+    background-color: #121212; 
+}
+
+.light-theme {
+    background-color: #f0f0f0; 
+}
+
+.container {
+    text-align: center;
+    padding: 40px 30px;
+    border-radius: 25px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.8);
+    border: 1px solid #444;
+    width: auto;
+    min-width: 400px;
+    max-width: fit-content;
+    padding: 30px;
+    transition: width 0.3s ease, padding 0.3s ease, background-color 0.5s ease, color 0.5s ease;
+    box-sizing: border-box;
+}
+
+.dark-theme h1 {
+    text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+}
+
+.light-theme {
+    --text-color: #000;
+    --container-bg: #fff;
+    --input-bg: #f9f9f9;
+    --input-border-color: #ccc;
+    --button-bg: #0288d1;
+    --button-hover-bg: #03a9f4;
+    --accent-color: #0288d1;
+    --loader-color: #0288d1;
+    background-color: #f0f0f0;
+    color: var(--text-color);
+}
+
+.dark-theme {
+    --text-color: #e0e0e0;
+    --container-bg: linear-gradient(135deg, #2e2e2e, #383838);
+    --input-bg: #2b2b2b;
+    --input-border-color: #555;
+    --button-bg: #03b3da;
+    --button-hover-bg: #018087;
+    --accent-color: #03dac5;
+    --loader-color: #03dac5;
+    background-color: #121212;
+    color: var(--text-color);
+}
+
+/* Theming for container */
+.container {
+    background-color: var(--container-bg);
+    color: var(--text-color);
+}
+
+/* Heading */
+h1 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+/* Input field styling */
+input[type="text"] {
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    border: 1px solid var(--input-border-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+/* Button styling */
+button {
+    padding: 12px 20px;
+    border: none;
+    background-color: var(--button-bg);
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+    transform: scale(1.04);
+}
+
+/* Loader */
+#loader {
+    margin: 20px auto;
+    border: 6px solid #1e1e1e;
+    border-top: 6px solid var(--loader-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: left;
+    color: var(--text-color);
+    opacity: 0;
+    animation: fade-in 0.5s forwards ease-out;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.theme-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.theme-btn:hover {
+    background-color: var(--button-hover-bg);
+    transform: scale(1.04);
+}
+@media (max-width: 500px) {
+    .container {
+        padding: 20px 15px;
+        min-width: 100%;
+    }
+
+    input[type="text"],
+    button {
+        font-size: 16px;
+    }
+}
